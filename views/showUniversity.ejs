@@ -1,0 +1,19 @@
+<h1>Show Universities</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <th>Name</th>
+        <th>Website</th>
+    </thead>
+    <tbody>
+        <% for(uni of lists){%> 
+        <tr> 
+            <td><%= uni.name %> </td> 
+            <td><%=uni.web_pages%></a> </td> 
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+
+<pre><%= JSON.stringify(uni,null,5) %> </pre>

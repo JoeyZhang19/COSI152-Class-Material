@@ -1,0 +1,11 @@
+<h1>Select a Main Ingredient</h1>
+<form method = "post" action="/showIngredients">
+    <input type = "submit">
+    <hr>
+    <select name="ingredient">
+    <% for(ingredient of ingredients){%>
+        <option><%= ingredient.strIngredient%></option>
+    <% } %>
+    </select>
+    <hr>
+</form>

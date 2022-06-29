@@ -1,0 +1,29 @@
+<h1>My Family</h1>
+<ul>
+    <% for(person of family){%> 
+        <li> 
+            <%= person.name %> is <%= person.age %> years old
+        </li>
+    <% } %>
+</ul>
+
+<table class="table table-bordered table-striped bg-info">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(person of family){%>
+            <tr>
+                <td> <%= person.name %></td>
+                <td> <%= person.age %></td>
+            </tr> 
+        <% } %>
+    </tbody>
+</table>
+
+<pre>
+<%= JSON.stringify(family,null,5) %>
+</pre>

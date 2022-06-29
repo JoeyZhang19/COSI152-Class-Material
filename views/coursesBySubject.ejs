@@ -1,0 +1,26 @@
+<h1> Course by Subject </h1>
+<form method="post" action="/coursesBySubject">
+    Please enter a subject: <input type="text" name="subject">
+    <br>
+    Please enter a term: <input type="number" name="term">
+    <br>
+    <input type="submit">
+</form>
+
+<% if (courses.length==0) { %>
+No courses to display
+<% } else {%>
+
+    <h1>Courses</h1>
+    <% for (course of courses) {%>
+    <hr>
+    <%= course.subject %> <%= course.coursenum %> <%= course.name %>
+    <% if(schedIds.includes(course._id)){%>
+        scheduled
+    <% } else {%>
+    <a href="/addCourse/<%= course._id%>">add to schedule</a>
+    <% }}} %>
+
+<pre>
+    <%= JSON.stringify(courses,null,5) %>
+</pre>
