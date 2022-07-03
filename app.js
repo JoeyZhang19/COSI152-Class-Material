@@ -26,6 +26,7 @@ const Course = require('./models/Course')
 // *********************************************************** //
 
 const mongoose = require( 'mongoose' );
+//const mongodb_URI = process.env.mongodb_URI;
 //const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
 const mongodb_URI = 'mongodb+srv://cs_sj:BrandeisSpr22@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
@@ -403,6 +404,36 @@ app.post('/exam5',
     }
   })
 
+const BugReport = require('./models/BugReport')
+
+app.get('/exam6',
+  isLoggedIn,
+  async(req,res,next) => {
+    try{
+      res.locals.bugreports = await BugReport.find({userId:res.locals.user._id});
+      res.render('exam6')
+    }catch(e){
+      next(e);
+    }
+  })
+  
+app.post('/exam6',
+  isLoggedIn,
+  async(req,res,next) => {
+    try {
+      const newBugReport =
+        new BugReport(
+          { userId:res.locals.user._id,
+            shortDescr:req.body.shortDescr,
+            detailDescr:req.body.detailDescr,}
+        )
+      await newBugReport.save();
+      res.redirect('/exam6')
+    }catch(e){
+      next(e)
+    }
+  })
+  
 
 app.get('/deleteToDoItem/:itemId',
   isLoggedIn,
